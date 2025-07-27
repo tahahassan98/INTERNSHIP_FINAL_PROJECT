@@ -1,0 +1,58 @@
+# Student Grading System
+def calculate_grade(percentage):
+    if percentage >= 85:
+        return 'A'
+    elif percentage >= 70:
+        return 'B'
+    elif percentage >= 50:
+        return 'C'
+    else:
+        return 'Fail'
+
+def print_report(name, marks, total, percentage, grade):
+    print("\n--- Report Card for", name, "---")
+    print("Subject Marks:")
+    print("Math:     ", marks[0])
+    print("Physics:  ", marks[1])
+    print("English:  ", marks[2])
+    print(f"Total Marks: {total} / 300")
+    print(f"Percentage: {percentage:.2f}%")
+    print(f"Grade: {grade}")
+
+def main():
+    print("📘 Student Grading System\n")
+    
+    name = input("Enter student name: ")
+
+    # Taking subject marks input
+    try:
+        math = int(input("Enter marks for Math: "))
+        physics = int(input("Enter marks for Physics: "))
+        english = int(input("Enter marks for English: "))
+    except ValueError:
+        print("❌ Invalid input! Please enter numbers only.")
+        return
+
+    # Validate marks range
+    if not all(0 <= m <= 100 for m in [math, physics, english]):
+        print("❌ Marks should be between 0 and 100.")
+        return
+
+    marks = [math, physics, english]
+    total = sum(marks)
+    percentage = (total / 300) * 100
+    grade = calculate_grade(percentage)
+
+    print_report(name, marks, total, percentage, grade)
+
+    # Optional: Save to file
+    save = input("\nDo you want to save the report to a file? (yes/no): ").lower()
+    if save == "yes":
+        with open("student_report.txt", "a") as file:
+            file.write(f"{name} - Total: {total}/300, Percentage: {percentage:.2f}%, Grade: {grade}\n")
+        print("✅ Report saved to 'student_report.txt'")
+
+# Run the program
+if __name__ == "__main__":
+    main()
+
