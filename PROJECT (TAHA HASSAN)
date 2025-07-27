@@ -20,7 +20,7 @@ def print_report(name, marks, total, percentage, grade):
     print(f"Grade: {grade}")
 
 def main():
-    print("📘 Student Grading System\n")
+    print("Student Grading System\n")
     
     name = input("Enter student name: ")
 
@@ -30,12 +30,12 @@ def main():
         physics = int(input("Enter marks for Physics: "))
         english = int(input("Enter marks for English: "))
     except ValueError:
-        print("❌ Invalid input! Please enter numbers only.")
+        print(" Invalid input! Please enter numbers only.")
         return
 
     # Validate marks range
     if not all(0 <= m <= 100 for m in [math, physics, english]):
-        print("❌ Marks should be between 0 and 100.")
+        print("Marks should be between 0 and 100.")
         return
 
     marks = [math, physics, english]
@@ -50,7 +50,7 @@ def main():
     if save == "yes":
         with open("student_report.txt", "a") as file:
             file.write(f"{name} - Total: {total}/300, Percentage: {percentage:.2f}%, Grade: {grade}\n")
-        print("✅ Report saved to 'student_report.txt'")
+        print("Report saved to 'student_report.txt'")
 
 # Run the program
 if __name__ == "__main__":
